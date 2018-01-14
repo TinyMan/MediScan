@@ -14,6 +14,8 @@ import prism.mediscan.model.Presentation
 
 class PresentationDetails : AppCompatActivity() {
 
+    var presentation = Presentation();
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_presentation_details)
@@ -35,6 +37,23 @@ class PresentationDetails : AppCompatActivity() {
 
     }
 
+    fun voirNotice(view: View) {
+        this.startDocumentActivity('N', this.presentation.specialite.codeDocument);
+    }
+
+    fun voirRCP(view: View) {
+        this.startDocumentActivity('R', this.presentation.specialite.codeDocument);
+    }
+
+    fun startDocumentActivity(type: Char, codeDocument: String) {
+        val intent = Intent(this, DocumentActivity::class.java);
+        val b = Bundle();
+        b.putChar("type", type);
+        b.putString("code", codeDocument);
+        intent.putExtras(b)
+        startActivity(intent)
+    }
+
     fun updateFromCip(cip: String) {
         val db = BdpmDatabase(this);
         val p = db.getPresentation(cip);
@@ -43,6 +62,7 @@ class PresentationDetails : AppCompatActivity() {
     }
 
     fun updateFromPresentation(p: Presentation) {
+        this.presentation = p;
         libellePresentation.text = p.libelle
         formePharma.text = p.specialite.formePharmacologique;
         nomSpecialite.text = p.specialite.nom;

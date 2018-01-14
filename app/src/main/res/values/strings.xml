@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MedScanner</string>
+    <string name="app_name">MediScan</string>
     <string name="title_activity_presentation_details">PresentationDetails</string>
 </resources>

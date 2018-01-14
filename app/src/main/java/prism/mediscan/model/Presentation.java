@@ -20,6 +20,9 @@ public class Presentation {
     private String datedeclaration;
     private AgrementCollectivites agrementCollectivites;
 
+    public Presentation() {
+
+    }
     public Presentation(String cip13, String cip7, Specialite specialite, String libelle, String statutAdministratif, String etatCommercialisation, String datedeclaration, String agrementCollectivites) {
         this.cip13 = cip13;
         this.cip7 = cip7;
@@ -62,4 +65,5 @@ public class Presentation {
     public AgrementCollectivites getAgrementCollectivites() {
         return agrementCollectivites;
     }
+
 }

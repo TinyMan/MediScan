@@ -48,7 +48,8 @@ class BdpmDatabase constructor(context: Context) {
                     q.getString(q.getColumnIndex("dateAMM")),
                     q.getString(q.getColumnIndex("statutBDM")),
                     q.getString(q.getColumnIndex("numAutorisation")),
-                    q.getInt(q.getColumnIndex("surveillance")))
+                    q.getInt(q.getColumnIndex("surveillance")),
+                    q.getString(q.getColumnIndex("codeDocument")))
             val p = Presentation(q.getString(q.getColumnIndex("cip13")),
                     q.getString(q.getColumnIndex("cip7")),
                     spe,

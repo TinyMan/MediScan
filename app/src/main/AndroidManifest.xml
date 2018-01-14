@@ -10,20 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="prism.mediscan.PresentationDetails"
+            android:name=".PresentationDetails"
             android:label="@string/title_activity_presentation_details"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="prism.mediscan.ScanActivity"
+        <activity
+            android:name=".ScanActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+        <activity android:name=".DocumentActivity"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

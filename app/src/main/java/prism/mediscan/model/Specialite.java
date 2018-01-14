@@ -15,8 +15,9 @@ public class Specialite {
     private String statutBDM;
     private String numAutorisation;
     private boolean surveillance;
+    private String codeDocument;
 
-    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance) {
+    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument) {
         this.cis = cis;
         this.nom = nom;
         this.formePharmacologique = formePharmacologique;
@@ -27,6 +28,7 @@ public class Specialite {
         this.statutBDM = statutBDM;
         this.numAutorisation = numAutorisation;
         this.surveillance = surveillance == 1;
+        this.codeDocument = codeDocument;
     }
 
     public String getCis() {
@@ -67,5 +69,9 @@ public class Specialite {
 
     public boolean isSurveillance() {
         return surveillance;
+    }
+
+    public String getCodeDocument() {
+        return codeDocument;
     }
 }
