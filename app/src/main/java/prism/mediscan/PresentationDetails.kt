@@ -75,11 +75,33 @@ class PresentationDetails : AppCompatActivity() {
                 Log.d("MainActivity", "Cancelled scan")
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                val code = result.contents
                 try {
-                    this.updateFromCip(code);
+                    var code: String? = "";
+                    // format du datamatrix page 7: http://www.ucdcip.org/pdf/CIP-ACL%20cahier%20n%C2%B01%20Data%20Matrix%20Tra%C3%A7abilit%C3%A9.pdf
+                    /** 01 03400930000120 17 AAMMJJ 10 A11111
+                     * sans espace
+                     * Se lit
+                     * 01 = 0 + code CIP13
+                     * 17 = date de péremption
+                     * 10 = numéro de lot
+                     */
+                    val regex = Regex("^.010(\\d{13})17(\\d{2})(\\d{2})(\\d{2})10([A-Z]\\d{5})$")
+                    if (result.contents.length == 33 && regex.matches(result.contents)) {
+                        val matched = regex.matchEntire(result.contents)
+                        code = matched?.groups?.get(1)?.value;
+                        val annee = matched?.groups?.get(2)?.value
+                        val mois = matched?.groups?.get(3)?.value
+                        val jour = matched?.groups?.get(4)?.value
+                        dateExpiration.text = "$jour/$mois/20$annee";
+                        lot.text = matched?.groups?.get(5)?.value;
+                    }
+                    if (code != null)
+                        this.updateFromCip(code)
                 } catch (e: Exception) {
                     this.showError(e);
+                    libellePresentation.text = result.contents
+                    formePharma.text = result.contents.length.toString()
+
                 }
             }
         } else {
