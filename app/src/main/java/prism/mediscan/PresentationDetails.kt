@@ -76,7 +76,7 @@ class PresentationDetails : AppCompatActivity() {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 try {
-                    var code: String? = "";
+                    var code = result.contents;
                     // format du datamatrix page 7: http://www.ucdcip.org/pdf/CIP-ACL%20cahier%20n%C2%B01%20Data%20Matrix%20Tra%C3%A7abilit%C3%A9.pdf
                     /** 01 03400930000120 17 AAMMJJ 10 A11111
                      * sans espace
@@ -85,8 +85,8 @@ class PresentationDetails : AppCompatActivity() {
                      * 17 = date de péremption
                      * 10 = numéro de lot
                      */
-                    val regex = Regex("^.010(\\d{13})17(\\d{2})(\\d{2})(\\d{2})10([A-Z]\\d{5})$")
-                    if (result.contents.length == 33 && regex.matches(result.contents)) {
+                    val regex = Regex("^.010(\\d{13})17(\\d{2})(\\d{2})(\\d{2})10([A-Z0-9]+)$")
+                    if (regex.matches(result.contents)) {
                         val matched = regex.matchEntire(result.contents)
                         code = matched?.groups?.get(1)?.value;
                         val annee = matched?.groups?.get(2)?.value
