@@ -92,7 +92,7 @@ class PresentationDetails : AppCompatActivity() {
                         val annee = matched?.groups?.get(2)?.value
                         val mois = matched?.groups?.get(3)?.value
                         val jour = matched?.groups?.get(4)?.value
-                        dateExpiration.text = "$jour/$mois/20$annee";
+                        dateExpiration.text = "$mois/20$annee";
                         lot.text = matched?.groups?.get(5)?.value;
                     }
                     if (code != null)
