@@ -68,7 +68,7 @@ class BdpmDatabase constructor(context: Context) {
         return null;
     }
 
-    fun getListSubstance(cis: String): List<Substance> {
+    fun getListSubstance(cis: String): ArrayList<Substance> {
         val query = "SELECT * FROM ${TABLE_CIS_COMPO_bdpm} WHERE ${TABLE_CIS_COMPO_bdpm}.cis = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis))
         val list = ArrayList<Substance>(q.count)

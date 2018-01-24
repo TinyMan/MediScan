@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:text="Interactions"
                 android:padding="10dp"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:text="Substances"
                 android:padding="10dp"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
             <View
                 android:layout_width="fill_parent"

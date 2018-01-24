@@ -21,14 +21,15 @@ class PresentationDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_presentation_details)
         setSupportActionBar(toolbar)
-        val CIP = "3400930000649";
+        val CIP = "3400938544879";
 
         substance_adapter = SubstanceAdapter(this, R.layout.substance_layout)
         liste_substances.setAdapter(substance_adapter)
 
-        this.updateFromCip(CIP);
         liste_interactions.emptyView = empty_interactions
         liste_substances.emptyView = empty_substances
+
+        this.updateFromCip(CIP);
     }
 
     fun startScan(view: View) {
@@ -71,7 +72,8 @@ class PresentationDetails : AppCompatActivity() {
         libellePresentation.text = p.libelle
         formePharma.text = p.specialite.formePharmacologique;
         nomSpecialite.text = p.specialite.nom;
-        substance_adapter!!.addAll(p.specialite.substances);
+        substance_adapter?.clear()
+        substance_adapter?.addAll(p.specialite.substances)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
