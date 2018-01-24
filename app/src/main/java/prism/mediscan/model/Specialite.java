@@ -1,5 +1,7 @@
 package prism.mediscan.model;
 
+import java.util.List;
+
 /**
  * Created by rapha on 13/01/2018.
  */
@@ -17,7 +19,9 @@ public class Specialite {
     private boolean surveillance;
     private String codeDocument;
 
-    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument) {
+    private List<Substance> substances;
+
+    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument, List<Substance> substances) {
         this.cis = cis;
         this.nom = nom;
         this.formePharmacologique = formePharmacologique;
@@ -29,6 +33,11 @@ public class Specialite {
         this.numAutorisation = numAutorisation;
         this.surveillance = surveillance == 1;
         this.codeDocument = codeDocument;
+        this.substances = substances;
+    }
+
+    public List<Substance> getSubstances() {
+        return substances;
     }
 
     public String getCis() {

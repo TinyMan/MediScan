@@ -4,6 +4,7 @@ import android.content.Context
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Specialite
+import prism.mediscan.model.Substance
 
 /**
  * Created by rapha on 14/01/2018.
@@ -39,7 +40,8 @@ class BdpmDatabase constructor(context: Context) {
         val query = "SELECT * FROM ${TABLE_CIS_CIP_bdpm} INNER JOIN ${TABLE_CIS_bdpm} ON ${TABLE_CIS_bdpm}.cis = ${TABLE_CIS_CIP_bdpm}.cis WHERE ${column} = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cip))
         if (q.moveToFirst()) {
-            val spe = Specialite(q.getString(q.getColumnIndex("cis")),
+            val cis = q.getString(q.getColumnIndex("cis"));
+            val spe = Specialite(cis,
                     q.getString(q.getColumnIndex("nom")),
                     q.getString(q.getColumnIndex("formePharma")),
                     q.getString(q.getColumnIndex("statutAMM")),
@@ -49,7 +51,8 @@ class BdpmDatabase constructor(context: Context) {
                     q.getString(q.getColumnIndex("statutBDM")),
                     q.getString(q.getColumnIndex("numAutorisation")),
                     q.getInt(q.getColumnIndex("surveillance")),
-                    q.getString(q.getColumnIndex("codeDocument")))
+                    q.getString(q.getColumnIndex("codeDocument")),
+                    getListSubstance(cis))
             val p = Presentation(q.getString(q.getColumnIndex("cip13")),
                     q.getString(q.getColumnIndex("cip7")),
                     spe,
@@ -63,5 +66,25 @@ class BdpmDatabase constructor(context: Context) {
         }
         q.close()
         return null;
+    }
+
+    fun getListSubstance(cis: String): List<Substance> {
+        val query = "SELECT * FROM ${TABLE_CIS_COMPO_bdpm} WHERE ${TABLE_CIS_COMPO_bdpm}.cis = ?;"
+        val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis))
+        val list = ArrayList<Substance>(q.count)
+        while (q.moveToNext()) {
+            val substance = Substance(
+                    q.getString(q.getColumnIndex("nomSubstance")),
+                    q.getInt(q.getColumnIndex("codeSubstance")),
+                    q.getString(q.getColumnIndex("designation")),
+                    q.getString(q.getColumnIndex("dosageSubstance")),
+                    q.getString(q.getColumnIndex("refDosage")),
+                    q.getString(q.getColumnIndex("nature")),
+                    q.getInt(q.getColumnIndex("numLiaison"))
+            )
+            list.add(substance)
+        }
+        q.close()
+        return list;
     }
 }

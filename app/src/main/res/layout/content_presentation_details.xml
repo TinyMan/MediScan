@@ -8,22 +8,67 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_margin="8dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="1dp">
 
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:columnCount="2"
-            android:paddingStart="8dp"
-            android:paddingLeft="8dp">
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_rowSpan="20"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="15dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="false"
+                    android:src="@mipmap/ic_launcher_round"></ImageView>
+
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="false"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_marginBottom="15dp"></ImageView>
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="false"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_marginBottom="15dp"></ImageView>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/nomSpecialite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:maxWidth="280dp"
+                android:width="280dp"
                 android:layout_marginTop="8dp"
                 android:text="nomSpecialite"
                 android:layout_column="0" />
@@ -32,6 +77,8 @@
                 android:id="@+id/libellePresentation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:maxWidth="280dp"
                 android:layout_marginTop="8dp"
                 android:text="libellePresentation"
                 android:layout_column="0" />
@@ -94,12 +141,114 @@
                 android:id="@+id/notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:background="@color/zxing_transparent"
                 android:onClick="voirNotice"
                 android:text="Voir la notice"
                 android:layout_column="0" />
 
         </GridLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/interractions_card"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="1dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Interactions"
+                android:padding="10dp"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#D3D3D3" />
+
+            <TextView
+                android:id="@+id/empty_interactions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Aucune interactions"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/liste_interactions"
+                android:scrollbars="none">
+
+            </ListView>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/substances_card"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="1dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Substances"
+                android:padding="10dp"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#D3D3D3" />
+
+            <TextView
+                android:id="@+id/empty_substances"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Aucune substances"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/liste_substances"
+                android:scrollbars="none">
+
+            </ListView>
+
+
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 

@@ -15,6 +15,7 @@ import prism.mediscan.model.Presentation
 class PresentationDetails : AppCompatActivity() {
 
     var presentation = Presentation();
+    var substance_adapter: SubstanceAdapter? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,12 @@ class PresentationDetails : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val CIP = "3400930000649";
 
+        substance_adapter = SubstanceAdapter(this, R.layout.substance_layout)
+        liste_substances.setAdapter(substance_adapter)
 
         this.updateFromCip(CIP);
+        liste_interactions.emptyView = empty_interactions
+        liste_substances.emptyView = empty_substances
     }
 
     fun startScan(view: View) {
@@ -66,6 +71,7 @@ class PresentationDetails : AppCompatActivity() {
         libellePresentation.text = p.libelle
         formePharma.text = p.specialite.formePharmacologique;
         nomSpecialite.text = p.specialite.nom;
+        substance_adapter!!.addAll(p.specialite.substances);
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
