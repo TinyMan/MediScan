@@ -21,7 +21,7 @@ class PresentationDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_presentation_details)
         setSupportActionBar(toolbar)
-        val CIP = "3400938544879";
+        val CIP = "3400956469659";
 
         substance_adapter = SubstanceAdapter(this, R.layout.substance_layout)
         liste_substances.setAdapter(substance_adapter)
@@ -72,6 +72,7 @@ class PresentationDetails : AppCompatActivity() {
         libellePresentation.text = p.libelle
         formePharma.text = p.specialite.formePharmacologique;
         nomSpecialite.text = p.specialite.nom;
+        conditionPrescription.text = p.specialite.cpd;
         substance_adapter?.clear()
         substance_adapter?.addAll(p.specialite.substances)
     }

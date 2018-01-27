@@ -18,10 +18,11 @@ public class Specialite {
     private String numAutorisation;
     private boolean surveillance;
     private String codeDocument;
+    private String cpd;
 
     private ArrayList<Substance> substances;
 
-    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument, ArrayList<Substance> substances) {
+    public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument, ArrayList<Substance> substances, String cpd) {
         this.cis = cis;
         this.nom = nom;
         this.formePharmacologique = formePharmacologique;
@@ -34,6 +35,11 @@ public class Specialite {
         this.surveillance = surveillance == 1;
         this.codeDocument = codeDocument;
         this.substances = substances;
+        this.cpd = cpd;
+    }
+
+    public String getCpd() {
+        return cpd;
     }
 
     public ArrayList<Substance> getSubstances() {

@@ -1,6 +1,7 @@
 package prism.mediscan
 
 import android.content.Context
+import android.util.Log
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Specialite
@@ -13,7 +14,7 @@ import prism.mediscan.model.Substance
 class BdpmDatabase constructor(context: Context) {
 
     private val DATABASE_NAME = "bdpm.sqlite"
-    private val DATABASE_VERSION = 1
+    private val DATABASE_VERSION = 2
 
     private val TABLE_CIS_bdpm = "CIS_bdpm"
     private val TABLE_CIS_CIP_bdpm = "CIS_CIP_bdpm"
@@ -27,7 +28,8 @@ class BdpmDatabase constructor(context: Context) {
     private var database: SQLiteAssetHelper;
 
     init {
-       this.database = SQLiteAssetHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
+        this.database = SQLiteAssetHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
+        this.database.setForcedUpgrade(2);
     }
 
     fun getPresentation(cip: String): Presentation? {
@@ -37,7 +39,7 @@ class BdpmDatabase constructor(context: Context) {
             7 -> column = "cip7"
             else -> throw Exception("Code CIP Invalide")
         }
-        val query = "SELECT * FROM ${TABLE_CIS_CIP_bdpm} INNER JOIN ${TABLE_CIS_bdpm} ON ${TABLE_CIS_bdpm}.cis = ${TABLE_CIS_CIP_bdpm}.cis WHERE ${column} = ?;"
+        val query = "SELECT * FROM ${TABLE_CIS_CIP_bdpm} INNER JOIN ${TABLE_CIS_bdpm} ON ${TABLE_CIS_bdpm}.cis = ${TABLE_CIS_CIP_bdpm}.cis NATURAL LEFT OUTER JOIN ${TABLE_CIS_CPD_bdpm} WHERE ${column} = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cip))
         if (q.moveToFirst()) {
             val cis = q.getString(q.getColumnIndex("cis"));
@@ -52,7 +54,8 @@ class BdpmDatabase constructor(context: Context) {
                     q.getString(q.getColumnIndex("numAutorisation")),
                     q.getInt(q.getColumnIndex("surveillance")),
                     q.getString(q.getColumnIndex("codeDocument")),
-                    getListSubstance(cis))
+                    getListSubstance(cis),
+                    q.getString(q.getColumnIndex("conditions")))
             val p = Presentation(q.getString(q.getColumnIndex("cip13")),
                     q.getString(q.getColumnIndex("cip7")),
                     spe,
@@ -69,6 +72,7 @@ class BdpmDatabase constructor(context: Context) {
     }
 
     fun getListSubstance(cis: String): ArrayList<Substance> {
+        Log.d("Database", "getListSubstance ( " + cis + " )")
         val query = "SELECT * FROM ${TABLE_CIS_COMPO_bdpm} WHERE ${TABLE_CIS_COMPO_bdpm}.cis = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis))
         val list = ArrayList<Substance>(q.count)
