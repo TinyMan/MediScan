@@ -3,6 +3,7 @@ package prism.mediscan
 import android.content.Context
 import android.util.Log
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
+import prism.mediscan.model.Avis
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Specialite
 import prism.mediscan.model.Substance
@@ -55,7 +56,8 @@ class BdpmDatabase constructor(context: Context) {
                     q.getInt(q.getColumnIndex("surveillance")),
                     q.getString(q.getColumnIndex("codeDocument")),
                     getListSubstance(cis),
-                    q.getString(q.getColumnIndex("conditions")))
+                    q.getString(q.getColumnIndex("conditions")),
+                    getListAvis(cis))
             val p = Presentation(q.getString(q.getColumnIndex("cip13")),
                     q.getString(q.getColumnIndex("cip7")),
                     spe,
@@ -89,6 +91,25 @@ class BdpmDatabase constructor(context: Context) {
             list.add(substance)
         }
         q.close()
+        return list;
+    }
+
+    fun getListAvis(cis: String): ArrayList<Avis> {
+        val query = "SELECT motifEval, valeurASMR as titre, libelleASMR as libelle, dateAvisCT, codeHAS FROM ${TABLE_CIS_HAS_ASMR_bdpm} WHERE cis = ?" +
+                "UNION SELECT motifEval, valeurSMR as titre, libelleSMR as libelle, dateAvisCT, codeHAS FROM ${TABLE_CIS_HAS_SMR_bdpm} WHERE cis = ?;"
+        val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis, cis));
+        val list = ArrayList<Avis>(q.count);
+        while (q.moveToNext()) {
+            val avis = Avis(
+                    q.getString(q.getColumnIndex("motifEval")),
+                    q.getString(q.getColumnIndex("titre")),
+                    q.getString(q.getColumnIndex("libelle")),
+                    q.getString(q.getColumnIndex("dateAvisCT")),
+                    q.getString(q.getColumnIndex("codeHAS"))
+            )
+            list.add(avis);
+        }
+        q.close();
         return list;
     }
 }

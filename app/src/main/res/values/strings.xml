@@ -6,5 +6,7 @@
     <string name="empty_interaction">Aucune interaction</string>
     <string name="interactions">Interactions</string>
     <string name="refDosage">pour %1$s</string>
+    <string name="avis">Avis</string>
+    <string name="empty_avis">Aucun avis disponible</string>
     <string name="btn_expand">></string>
 </resources>
