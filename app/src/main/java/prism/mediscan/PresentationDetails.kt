@@ -75,6 +75,8 @@ class PresentationDetails : AppCompatActivity() {
         conditionPrescription.text = p.specialite.cpd;
         substance_adapter?.clear()
         substance_adapter?.addAll(p.specialite.substances)
+        if (p.specialite.substances.size > 0)
+            refDosage.text = resources.getString(R.string.refDosage, p.specialite.substances.first().refDosage)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

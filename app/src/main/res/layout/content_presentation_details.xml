@@ -165,12 +165,23 @@
             android:orientation="vertical"
             android:scrollbars="none">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Interactions"
-                android:padding="10dp"
-                android:textSize="12sp" />
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/interactions"
+                    android:textSize="12sp"
+                    android:layout_alignParentLeft="true" />
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:text="ok"/>-->
+            </RelativeLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -181,7 +192,7 @@
                 android:id="@+id/empty_interactions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Aucune interactions"
+                android:text="@string/empty_interaction"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -216,12 +227,25 @@
             android:orientation="vertical"
             android:scrollbars="none">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Substances"
-                android:padding="10dp"
-                android:textSize="12sp" />
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/substances"
+                    android:textSize="12sp"
+                    android:layout_alignParentLeft="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/refDosage" />
+            </RelativeLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -232,7 +256,7 @@
                 android:id="@+id/empty_substances"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Aucune substances"
+                android:text="@string/empty_substance"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"

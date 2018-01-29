@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">MediScan</string>
     <string name="title_activity_presentation_details">PresentationDetails</string>
+    <string name="substances">Substances</string>
+    <string name="empty_substance">Aucune substance</string>
+    <string name="empty_interaction">Aucune interaction</string>
+    <string name="interactions">Interactions</string>
+    <string name="refDosage">pour %1$s</string>
+    <string name="btn_expand">></string>
 </resources>

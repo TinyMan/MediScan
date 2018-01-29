@@ -22,6 +22,8 @@ class SubstanceAdapter(context: Context?, resource: Int) : ArrayAdapter<Substanc
 
 
         view.findViewById<TextView>(R.id.nomSubstance).text = substance.nomSubstance
+        view.findViewById<TextView>(R.id.dosageSubstance).text = substance.dosageSubstance;
+
 
         return view;
     }
