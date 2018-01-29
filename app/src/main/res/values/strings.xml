@@ -8,5 +8,6 @@
     <string name="refDosage">pour %1$s</string>
     <string name="avis">Avis</string>
     <string name="empty_avis">Aucun avis disponible</string>
+    <string name="dossier_has">Dossier HAS %1$s</string>
     <string name="btn_expand">></string>
 </resources>

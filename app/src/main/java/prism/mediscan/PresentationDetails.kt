@@ -112,6 +112,8 @@ class PresentationDetails : AppCompatActivity() {
 
         avis_adapter?.clear();
         avis_adapter?.addAll(p.specialite.avis);
+        if (p.specialite.avis.size > 0)
+            dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
 
         setListViewHeightBasedOnChildren(liste_substances);
         setListViewHeightBasedOnChildren(liste_avis);
