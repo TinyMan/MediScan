@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:orientation="vertical"
+    android:paddingBottom="50dp">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="8dp"
         card_view:cardCornerRadius="1dp">
 
 
@@ -17,48 +19,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:columnCount="2"
-            android:paddingStart="15dp"
             android:paddingEnd="15dp"
+            android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:paddingLeft="15dp">
+            android:paddingStart="15dp">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_column="1"
-                android:layout_rowSpan="20"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
                 android:layout_gravity="center"
-                android:gravity="center">
+                android:layout_rowSpan="20"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginBottom="15dp"
-                    android:scaleType="centerInside"
                     android:adjustViewBounds="false"
+                    android:scaleType="centerInside"
                     android:src="@mipmap/ic_launcher_round"></ImageView>
 
                 <ImageView
                     android:id="@+id/image1"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:scaleType="centerInside"
+                    android:layout_marginBottom="15dp"
                     android:adjustViewBounds="false"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:layout_marginBottom="15dp"></ImageView>
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_launcher_round"></ImageView>
 
                 <ImageView
                     android:id="@+id/image2"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:scaleType="centerInside"
+                    android:layout_marginBottom="15dp"
                     android:adjustViewBounds="false"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:layout_marginBottom="15dp"></ImageView>
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_launcher_round"></ImageView>
 
             </LinearLayout>
 
@@ -66,66 +68,66 @@
                 android:id="@+id/nomSpecialite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginTop="8dp"
+                android:width="280dp"
                 android:maxLines="2"
                 android:maxWidth="280dp"
-                android:width="280dp"
-                android:layout_marginTop="8dp"
-                android:text="nomSpecialite"
-                android:layout_column="0" />
+                android:text="nomSpecialite" />
 
             <TextView
                 android:id="@+id/libellePresentation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginTop="8dp"
                 android:maxLines="2"
                 android:maxWidth="280dp"
-                android:layout_marginTop="8dp"
-                android:text="libellePresentation"
-                android:layout_column="0" />
+                android:text="libellePresentation" />
 
 
             <GridLayout
                 android:layout_column="0"
-                android:columnCount="2"
+                android:layout_gravity="fill_horizontal"
                 android:layout_marginTop="8dp"
-                android:layout_gravity="fill_horizontal">
+                android:columnCount="2">
 
 
                 <TextView
                     android:id="@+id/labelExp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Expiration: "
-                    android:layout_column="0" />
+                    android:layout_column="0"
+                    android:text="Expiration: " />
 
                 <TextView
                     android:id="@+id/dateExpiration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="05/2020"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:text="05/2020" />
 
             </GridLayout>
 
             <GridLayout
                 android:layout_column="0"
-                android:columnCount="2"
+                android:layout_gravity="fill_horizontal"
                 android:layout_marginTop="8dp"
-                android:layout_gravity="fill_horizontal">
+                android:columnCount="2">
 
                 <TextView
                     android:id="@+id/labelLot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lot N°"
-                    android:layout_column="0" />
+                    android:layout_column="0"
+                    android:text="Lot N°" />
 
                 <TextView
                     android:id="@+id/lot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HF52521"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:text="HF52521" />
 
             </GridLayout>
 
@@ -141,10 +143,10 @@
                 android:id="@+id/notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:background="@color/zxing_transparent"
                 android:onClick="voirNotice"
-                android:text="Voir la notice"
-                android:layout_column="0" />
+                android:text="Voir la notice" />
 
         </GridLayout>
 
@@ -153,11 +155,11 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/interractions_card"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="1dp"
-        android:scrollbars="none">
+        android:layout_margin="8dp"
+        android:scrollbars="none"
+        card_view:cardCornerRadius="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -215,11 +217,11 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/substances_card"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="1dp"
-        android:scrollbars="none">
+        android:layout_margin="8dp"
+        android:scrollbars="none"
+        card_view:cardCornerRadius="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -235,16 +237,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:text="@string/substances"
-                    android:textSize="12sp"
-                    android:layout_alignParentLeft="true" />
+                    android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/refDosage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/refDosage" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <View
@@ -256,16 +258,16 @@
                 android:id="@+id/empty_substances"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/empty_substance"
-                android:gravity="center"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/empty_substance"
                 android:visibility="gone" />
 
             <ListView
+                android:id="@+id/liste_substances"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/liste_substances"
                 android:scrollbars="none">
 
             </ListView>
@@ -279,11 +281,11 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/liens_card"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="1dp"
-        android:scrollbars="none">
+        android:layout_margin="8dp"
+        android:scrollbars="none"
+        card_view:cardCornerRadius="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -299,16 +301,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:text="@string/avis"
-                    android:textSize="12sp"
-                    android:layout_alignParentLeft="true" />
+                    android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/dossierHAS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:layout_alignParentRight="true"
-                    android:id="@+id/dossierHAS" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <View
@@ -320,16 +322,16 @@
                 android:id="@+id/empty_avis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/empty_avis"
-                android:gravity="center"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/empty_avis"
                 android:visibility="gone" />
 
             <ListView
+                android:id="@+id/liste_avis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/liste_avis"
                 android:scrollbars="none">
 
             </ListView>
@@ -344,20 +346,32 @@
         android:id="@+id/voirRCP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_column="0"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="voirRCP"
         android:text="Voir le résumé des caractéristique du produit"
-        android:layout_column="0" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/formePharma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_column="0"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="formePharma"
-        android:layout_column="0" />
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:padding="10dp"
+        android:text="@string/disclaimer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="12sp"
+        android:textStyle="italic" />
 </LinearLayout>
