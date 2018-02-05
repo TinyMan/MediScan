@@ -3,46 +3,23 @@ package prism.mediscan
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import android.view.View.MeasureSpec
-import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.ListView
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
+import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_presentation_details.*
 import kotlinx.android.synthetic.main.content_presentation_details.*
+import kotlinx.android.synthetic.main.layout_liste_avis.*
 import prism.mediscan.model.Presentation
 
 
 class PresentationDetails : AppCompatActivity() {
 
-    /**** Method for Setting the Height of the ListView dynamically.
-     * Hack to fix the issue of not showing all the items of the ListView
-     * when placed inside a ScrollView   */
-    fun setListViewHeightBasedOnChildren(listView: ListView) {
-        val listAdapter = listView.getAdapter() ?: return
-
-        val desiredWidth = MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.UNSPECIFIED)
-        var totalHeight = 0
-        var view: View? = null
-        for (i in 0 until listAdapter.getCount()) {
-            view = listAdapter.getView(i, view, listView)
-            if (i == 0)
-                view!!.layoutParams = ViewGroup.LayoutParams(desiredWidth, AbsListView.LayoutParams.WRAP_CONTENT)
-
-            view!!.measure(desiredWidth, MeasureSpec.UNSPECIFIED)
-            totalHeight += view.measuredHeight
-        }
-        val params = listView.getLayoutParams()
-        params.height = totalHeight + listView.getDividerHeight() * (listAdapter.getCount() - 1)
-        listView.setLayoutParams(params)
-    }
-
     var presentation = Presentation();
     var substance_adapter: SubstanceAdapter? = null;
-    var avis_adapter: AvisAdapter? = null;
+    var avis_adapter: AvisExpandableAdapter? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +30,9 @@ class PresentationDetails : AppCompatActivity() {
         substance_adapter = SubstanceAdapter(this, R.layout.substance_layout)
         liste_substances.setAdapter(substance_adapter)
 
-        avis_adapter = AvisAdapter(this, R.layout.avis_layout)
-        liste_avis.setAdapter(avis_adapter)
-
-
         liste_interactions.emptyView = empty_interactions
         liste_substances.emptyView = empty_substances
-        liste_avis.emptyView = empty_avis
+//        liste_avis.emptyView = empty_avis
 
         this.updateFromCip(CIP);
     }
@@ -110,13 +83,16 @@ class PresentationDetails : AppCompatActivity() {
         if (p.specialite.substances.size > 0)
             refDosage.text = resources.getString(R.string.refDosage, p.specialite.substances.first().refDosage)
 
-        avis_adapter?.clear();
-        avis_adapter?.addAll(p.specialite.avis);
-        if (p.specialite.avis.size > 0)
-            dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
+//        if (p.specialite.avis.size > 0)
+//            dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
+
+        avis_adapter = AvisExpandableAdapter(this, p.specialite)
+        avis_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
+        avis_recycler.layoutManager = LinearLayoutManager(this)
+        avis_recycler.setAdapter(avis_adapter)
 
         setListViewHeightBasedOnChildren(liste_substances);
-        setListViewHeightBasedOnChildren(liste_avis);
+//        setListViewHeightBasedOnChildren(liste_avis);
         setListViewHeightBasedOnChildren(liste_interactions);
     }
 
