@@ -10,8 +10,11 @@ import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_presentation_details.*
+import kotlinx.android.synthetic.main.card_avis.*
+import kotlinx.android.synthetic.main.card_interactions.*
+import kotlinx.android.synthetic.main.card_resume.*
+import kotlinx.android.synthetic.main.card_substances.*
 import kotlinx.android.synthetic.main.content_presentation_details.*
-import kotlinx.android.synthetic.main.layout_liste_avis.*
 import prism.mediscan.model.Presentation
 
 

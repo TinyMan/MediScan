@@ -43,6 +43,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:onClick="startScan"
         app:backgroundTint="@color/colorAccent"
-        app:srcCompat="@drawable/barcode" />
+        android:src="@drawable/barcode" />
 
 </android.support.design.widget.CoordinatorLayout>

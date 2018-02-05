@@ -11,4 +11,18 @@
     <string name="dossier_has">Dossier HAS %1$s</string>
     <string name="disclaimer">Les informations contenues dans cette application sont mises à disposition à titre informatif uniquement. Ne pas hésiter à demander l\'avis de votre médecin ou votre pharmacien.</string>
     <string name="btn_expand">></string>
+    <string name="ph_right">Texte à droite</string>
+    <string name="ph_nomSpecialite">nomSpecialite</string>
+    <string name="ph_libellePresentation">libellePresentation</string>
+    <string name="expiration">Expiration:</string>
+    <string name="ph_date">05/2020</string>
+    <string name="lot_n">Lot N°</string>
+    <string name="ph_lot">HF52521</string>
+    <string name="ph_conditionprescription">conditionPrescription</string>
+    <string name="btn_voir_la_notice">Voir la notice</string>
+    <string name="btn_rcp">Voir le résumé des caractéristique du produit</string>
+    <string name="ph_formepharma">formePharma</string>
+    <string name="ph_totreAvis">bonjour</string>
+    <string name="ph_nomSubstance">bonjour</string>
+    <string name="ph_details_avis">Details avis</string>
 </resources>

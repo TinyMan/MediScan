@@ -21,19 +21,17 @@
             android:text="@string/avis"
             android:textAlignment="viewStart"
             android:layout_marginStart="16dp"
-            android:layout_gravity="start"
-            android:layout_marginLeft="16dp" />
+            android:layout_gravity="start" />
 
         <TextView
             android:textSize="13sp"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:id="@+id/dossierHAS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:text="pour 100g"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
+            android:text="@string/ph_right"
+            android:layout_marginEnd="16dp" />
 
         <TextView
             android:id="@+id/empty_avis"
