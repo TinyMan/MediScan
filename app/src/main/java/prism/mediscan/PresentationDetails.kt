@@ -83,8 +83,8 @@ class PresentationDetails : AppCompatActivity() {
         if (p.specialite.substances.size > 0)
             refDosage.text = resources.getString(R.string.refDosage, p.specialite.substances.first().refDosage)
 
-//        if (p.specialite.avis.size > 0)
-//            dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
+        if (p.specialite.avis.size > 0)
+            dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
 
         avis_adapter = AvisExpandableAdapter(this, p.specialite)
         avis_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
