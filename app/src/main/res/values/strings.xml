@@ -9,6 +9,6 @@
     <string name="avis">Avis</string>
     <string name="empty_avis">Aucun avis disponible</string>
     <string name="dossier_has">Dossier HAS %1$s</string>
-    <string name="disclaimer">Les informations contenues dnas cette application sont mise à disposition à titre informatif uniquement. Ne pas hésiter à demander l\'avis de votre médecin ou votre pharmacien.</string>
+    <string name="disclaimer">Les informations contenues dans cette application sont mises à disposition à titre informatif uniquement. Ne pas hésiter à demander l\'avis de votre médecin ou votre pharmacien.</string>
     <string name="btn_expand">></string>
 </resources>
