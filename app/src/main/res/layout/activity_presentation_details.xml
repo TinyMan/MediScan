@@ -42,7 +42,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="startScan"
-        app:backgroundTint="@color/zxing_custom_possible_result_points"
+        app:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/barcode" />
 
 </android.support.design.widget.CoordinatorLayout>
