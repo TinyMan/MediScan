@@ -8,9 +8,13 @@ import android.view.View
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_history.*
+import kotlinx.android.synthetic.main.content_history.*
 import prism.mediscan.model.Presentation
+import prism.mediscan.model.Scan
 
 class HistoryActivity : AppCompatActivity() {
+    var database: Database? = null
+    var bdpm: BdpmDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +22,12 @@ class HistoryActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setTitle(resources.getString(R.string.title_activity_history))
 
+        database = Database(this)
+        bdpm = BdpmDatabase(this)
+
+        val values = database?.getAllScans();
+        scan_history.adapter = HistoryAdapter(this, R.layout.scan_layout, values)
+        Log.d("HistoryActivity", "Hey")
     }
 
 
@@ -33,7 +43,8 @@ class HistoryActivity : AppCompatActivity() {
 
 
     fun storeScan(presentation: Presentation) {
-
+        val scan = database?.storeScan(Scan(presentation.cip13, System.currentTimeMillis()))
+        (scan_history.adapter as HistoryAdapter).add(scan)
     }
 
     fun onScanSuccessful(presentation: Presentation) {
@@ -42,8 +53,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     fun getPresentationFromCip(cip: String): Presentation {
-        val db = BdpmDatabase(this);
-        val p = db.getPresentation(cip);
+        val p = bdpm?.getPresentation(cip);
         if (p == null) throw Exception("Médicament inconnu")
         return p;
     }
