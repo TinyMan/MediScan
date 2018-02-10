@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MediScan</string>
-    <string name="title_activity_presentation_details">PresentationDetails</string>
+    <string name="title_activity_presentation_details">Détails du médicament %1$s</string>
     <string name="substances">Substances</string>
     <string name="empty_substance">Aucune substance</string>
     <string name="empty_interaction">Aucune interaction</string>
@@ -25,4 +25,5 @@
     <string name="ph_totreAvis">bonjour</string>
     <string name="ph_nomSubstance">bonjour</string>
     <string name="ph_details_avis">Details avis</string>
+    <string name="title_activity_history">Médicaments scannés</string>
 </resources>

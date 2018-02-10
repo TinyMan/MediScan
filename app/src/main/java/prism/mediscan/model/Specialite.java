@@ -1,12 +1,13 @@
 package prism.mediscan.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by rapha on 13/01/2018.
  */
 
-public class Specialite {
+public class Specialite implements Serializable {
     private String cis;
     private String nom;
     private String formePharmacologique;

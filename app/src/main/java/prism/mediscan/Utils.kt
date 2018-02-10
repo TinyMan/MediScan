@@ -29,3 +29,5 @@ fun setListViewHeightBasedOnChildren(listView: ListView) {
     params.height = totalHeight + listView.getDividerHeight() * (listAdapter.getCount() - 1)
     listView.setLayoutParams(params)
 }
+
+val PRESENTATION = "PRESENTATION"
