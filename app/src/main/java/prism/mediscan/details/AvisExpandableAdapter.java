@@ -1,4 +1,4 @@
-package prism.mediscan;
+package prism.mediscan.details;
 
 import android.content.Context;
 import android.text.Html;
@@ -11,6 +11,7 @@ import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter;
 
 import java.util.ArrayList;
 
+import prism.mediscan.R;
 import prism.mediscan.model.Avis;
 import prism.mediscan.model.Specialite;
 

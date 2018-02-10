@@ -1,4 +1,4 @@
-package prism.mediscan
+package prism.mediscan.details
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,10 @@ import kotlinx.android.synthetic.main.card_interactions.*
 import kotlinx.android.synthetic.main.card_resume.*
 import kotlinx.android.synthetic.main.card_substances.*
 import kotlinx.android.synthetic.main.content_presentation_details.*
+import prism.mediscan.PRESENTATION
+import prism.mediscan.R
 import prism.mediscan.model.Presentation
+import prism.mediscan.setListViewHeightBasedOnChildren
 
 
 class PresentationDetails : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package prism.mediscan
+package prism.mediscan.details
 
 import android.annotation.TargetApi
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_document.*
+import prism.mediscan.R
 
 
 class DocumentActivity : AppCompatActivity() {

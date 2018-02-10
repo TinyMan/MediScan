@@ -1,4 +1,4 @@
-package prism.mediscan
+package prism.mediscan.history
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.content_history.*
+import prism.mediscan.*
+import prism.mediscan.details.PresentationDetails
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Scan
 
@@ -25,9 +27,13 @@ class HistoryActivity : AppCompatActivity() {
         database = Database(this)
         bdpm = BdpmDatabase(this)
 
-        val values = database?.getAllScans();
+        val values = database?.getAllScans()?.map { scan -> ScanListItem(bdpm!!, scan) };
         scan_history.adapter = HistoryAdapter(this, R.layout.scan_layout, values)
-        Log.d("HistoryActivity", "Hey")
+        scan_history.setOnItemClickListener { parent, view, position, id ->
+            val item = parent.adapter.getItem(position) as ScanListItem
+            goToDetails(item.presentation!!)
+        }
+
     }
 
 
@@ -44,7 +50,10 @@ class HistoryActivity : AppCompatActivity() {
 
     fun storeScan(presentation: Presentation) {
         val scan = database?.storeScan(Scan(presentation.cip13, System.currentTimeMillis()))
-        (scan_history.adapter as HistoryAdapter).add(scan)
+        if (scan != null && bdpm != null) {
+            val item = ScanListItem(bdpm!!, scan)
+            (scan_history.adapter as HistoryAdapter).add(item)
+        }
     }
 
     fun onScanSuccessful(presentation: Presentation) {

@@ -7,12 +7,11 @@ import com.github.marlonlom.utilities.timeago.TimeAgo
 /**
  * Created by rapha on 10/02/2018.
  */
-class Scan(val cip: String, val timestamp: Long) {
+open class Scan(val cip: String, val timestamp: Long) {
     val timeAgo: String
 
     init {
         Log.d("Scan ctor", timestamp.toString())
         timeAgo = TimeAgo.using(timestamp)
-
     }
 }
