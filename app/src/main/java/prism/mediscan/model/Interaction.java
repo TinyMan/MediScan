@@ -14,4 +14,16 @@ public class Interaction {
         this.type = type;
         this.conseil = conseil;
     }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public String getConseil(){
+        return conseil;
+    }
 }
