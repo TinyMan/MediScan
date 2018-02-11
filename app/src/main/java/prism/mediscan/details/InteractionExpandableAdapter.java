@@ -106,8 +106,8 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
         ArrayList<InteractionListItem> list = new ArrayList<InteractionListItem>(interactions.size());
 
         for(Interaction interaction : interactions){
-            list.add(new InteractionListItem(interaction.getNomMedicament()));
-            list.add(new InteractionListItem(interaction.getNomMedicament(), interaction.getDescription(), interaction.getConseil()));
+            list.add(new InteractionListItem(interaction.getNomMedicament2()));
+            list.add(new InteractionListItem(interaction.getNomMedicament2(), interaction.getDescription(), interaction.getConseil()));
         }
 
         return list;
