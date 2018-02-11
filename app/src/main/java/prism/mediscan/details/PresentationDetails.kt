@@ -61,7 +61,7 @@ class PresentationDetails : AppCompatActivity() {
 
     fun updateFromPresentation(p: Presentation) {
         this.presentation = p;
-        title = resources.getString(R.string.title_activity_presentation_details, p.specialite.nom)
+        title = p.specialite.nom
 
         // resume
         libellePresentation.text = p.libelle
