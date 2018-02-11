@@ -38,7 +38,6 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         values.put(COLUMN_EXPIRATIONDATE, scan.expirationDate)
         values.put(COLUMN_LOT, scan.numLot)
         val inserId = writableDatabase.insert(TABLE_HISTORY, null, values)
-        //val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), COLUMN_ID + " = ?", arrayOf(inserId.toString()), null, null, null)
         var cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP, COLUMN_EXPIRATIONDATE, COLUMN_LOT), COLUMN_ID + " = ?", arrayOf(inserId.toString()), null, null, null)
         if (cursor.moveToFirst()) {
             result = cursorToScan(cursor)
@@ -57,7 +56,6 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     }
 
     fun getAllScans(): List<Scan> {
-        //val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), null, null, null, null, null)
         val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP, COLUMN_EXPIRATIONDATE, COLUMN_LOT), null, null, null, null, null)
         val list = ArrayList<Scan>(cursor.count)
         while (cursor.moveToNext()) {
