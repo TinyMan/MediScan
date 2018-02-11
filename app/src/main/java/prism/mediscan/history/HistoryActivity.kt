@@ -12,7 +12,9 @@ import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.content_history.*
 import prism.mediscan.*
+import prism.mediscan.API.getInteractionsWithHistory
 import prism.mediscan.details.PresentationDetails
+import prism.mediscan.model.Interaction
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Scan
 
@@ -30,13 +32,23 @@ class HistoryActivity : AppCompatActivity() {
         database = Database(this)
         bdpm = BdpmDatabase(this)
 
+
         val values = database?.getAllScans()?.map { scan -> ScanListItem(bdpm!!, scan) };
         scan_history.adapter = HistoryAdapter(this, R.layout.scan_layout, values)
         scan_history.setOnItemClickListener { parent, view, position, id ->
             val item = parent.adapter.getItem(position) as ScanListItem
             goToDetails(item.presentation!!)
         }
-
+        val history = getCisHistory()
+        values?.forEach { it ->
+            if (it.presentation != null)
+                it.presentation.specialite.interactions =
+                        ArrayList<Interaction>(
+                                getInteractionsWithHistory(this,
+                                        it.presentation.specialite.cis,
+                                        history)
+                        )
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,11 +84,18 @@ class HistoryActivity : AppCompatActivity() {
         }
     }
 
+    fun getCisHistory(): List<String> {
+        val list = (scan_history.adapter as HistoryAdapter).values
+                ?.map { it -> it.presentation!!.specialite.cis }
+        return list ?: emptyList()
+    }
 
     fun storeScan(presentation: Presentation) {
         val scan = database?.storeScan(Scan(presentation.cip13, System.currentTimeMillis()))
         if (scan != null && bdpm != null) {
             val item = ScanListItem(bdpm!!, scan)
+            if (item.presentation != null)
+                item.presentation.specialite.interactions = ArrayList<Interaction>(getInteractionsWithHistory(this, item.presentation.specialite.cis, getCisHistory()))
             (scan_history.adapter as HistoryAdapter).add(item)
         }
     }

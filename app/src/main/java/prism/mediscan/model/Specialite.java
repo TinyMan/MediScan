@@ -21,7 +21,7 @@ public class Specialite implements Serializable {
     private String codeDocument;
     private String cpd;
     private ArrayList<Avis> avis;
-
+    private ArrayList<Interaction> interactions;
     private ArrayList<Substance> substances;
 
     public Specialite(String cis, String nom, String formePharmacologique, String statutAMM, String typeAMM, String etatCommercialisation, String dateAMM, String statutBDM, String numAutorisation, int surveillance, String codeDocument, ArrayList<Substance> substances, String cpd, ArrayList<Avis> avis) {
@@ -39,6 +39,14 @@ public class Specialite implements Serializable {
         this.substances = substances;
         this.cpd = cpd;
         this.avis = avis;
+    }
+
+    public ArrayList<Interaction> getInteractions() {
+        return interactions;
+    }
+
+    public void setInteractions(ArrayList<Interaction> interactions) {
+        this.interactions = interactions;
     }
 
     public ArrayList<Avis> getAvis() {
