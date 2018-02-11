@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import prism.mediscan.R;
 import prism.mediscan.model.Interaction;
+import prism.mediscan.model.Specialite;
 
 /**
  * Created by joshua-hugo on 11/02/18.
@@ -20,6 +21,7 @@ import prism.mediscan.model.Interaction;
 
 public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<InteractionExpandableAdapter.InteractionListItem> {
     public static int TYPE_DETAIL = 1001;
+    private Specialite specialite;
     private Context context;
 
     public static class InteractionListItem extends ExpandableRecyclerAdapter.ListItem{
@@ -75,8 +77,10 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
         }
     }
 
-    public InteractionExpandableAdapter(Context context){
+    public InteractionExpandableAdapter(Context context, Specialite specialite){
         super(context);
+        this.context = context;
+        this.specialite = specialite;
     }
 
     @Override
@@ -92,7 +96,7 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ExpandableRecyclerAdapter.ViewHolder holder, int position) {
         switch (getItemViewType(position)){
             case TYPE_HEADER:
                 ((InteractionViewHolder) holder).bind(position);
@@ -102,7 +106,7 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
     }
 
     public ArrayList<InteractionListItem> getInteraction(){
-        final ArrayList<Interaction> interactions = null;
+        final ArrayList<Interaction> interactions = this.specialite.getInteractions();
         ArrayList<InteractionListItem> list = new ArrayList<InteractionListItem>(interactions.size());
 
         for(Interaction interaction : interactions){

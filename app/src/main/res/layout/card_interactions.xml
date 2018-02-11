@@ -52,13 +52,13 @@
                 android:text="@string/empty_interaction"
                 android:visibility="gone" />
 
-            <ListView
-                android:id="@+id/liste_interactions"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/interaction_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
 
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
 
 
         </LinearLayout>
