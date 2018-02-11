@@ -17,7 +17,7 @@ fun stringOrDefault(el: JsonElement, def: String = ""): String {
 
 private fun getInteractions(ctx: Context, cis1: String, cis2: String): List<Interaction> {
     if(cis1 == cis2){
-      return ArrayList<Interaction>()
+        return emptyList()
     }
     val list = ArrayList<Interaction>()
 
