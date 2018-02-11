@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_presentation_details.*
 import kotlinx.android.synthetic.main.card_avis.*
@@ -81,6 +83,13 @@ class PresentationDetails : AppCompatActivity() {
             dossierHAS.text = resources.getString(R.string.dossier_has, p.specialite.avis.first().codeHAS)
 
         // avis
+        if (p.specialite.avis.size == 0) {
+            dossierHAS.visibility = GONE
+            empty_avis.visibility = VISIBLE
+        } else {
+            empty_avis.visibility = GONE
+            dossierHAS.visibility = VISIBLE
+        }
         avis_adapter = AvisExpandableAdapter(this, p.specialite)
         avis_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
         avis_recycler.layoutManager = LinearLayoutManager(this)
