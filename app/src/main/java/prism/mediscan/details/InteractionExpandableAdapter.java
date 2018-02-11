@@ -30,7 +30,7 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
         String conseil;
 
         public InteractionListItem(String nomMedicament){
-            super(TYPE_DETAIL);
+            super(TYPE_HEADER);
             this.nomMedicament = nomMedicament;
         }
 
@@ -81,6 +81,7 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
         super(context);
         this.context = context;
         this.specialite = specialite;
+        setItems(getInteraction());
     }
 
     @Override
@@ -100,8 +101,10 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
         switch (getItemViewType(position)){
             case TYPE_HEADER:
                 ((InteractionViewHolder) holder).bind(position);
+                return;
             default:
                 ((DetailViewHolder) holder).bind(position);
+                return;
         }
     }
 
