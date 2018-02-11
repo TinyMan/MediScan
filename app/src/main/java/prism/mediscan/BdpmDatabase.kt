@@ -3,6 +3,7 @@ package prism.mediscan
 import android.content.Context
 import android.util.Log
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
+import org.funktionale.memoization.memoize
 import prism.mediscan.model.Avis
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Specialite
@@ -27,13 +28,20 @@ class BdpmDatabase constructor(context: Context) {
     private val TABLE_CIS_GENER_bdpm = "CIS_GENER_bdpm"
 
     private var database: SQLiteAssetHelper;
+    private val memoizedGetPresentation = { cip: String -> this.internalGetPresentation(cip) }.memoize()
 
     init {
         this.database = SQLiteAssetHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
         this.database.setForcedUpgrade(2);
+
     }
 
     fun getPresentation(cip: String): Presentation? {
+        return this.memoizedGetPresentation(cip)
+    }
+
+    private fun internalGetPresentation(cip: String): Presentation? {
+        Log.d("BdpmDatabase", "GetPresentation " + cip)
         var column = "cip7";
         when (cip.length) {
             13 -> column = "cip13"
@@ -73,7 +81,7 @@ class BdpmDatabase constructor(context: Context) {
         return null;
     }
 
-    fun getListSubstance(cis: String): ArrayList<Substance> {
+    private fun getListSubstance(cis: String): ArrayList<Substance> {
         Log.d("Database", "getListSubstance ( " + cis + " )")
         val query = "SELECT * FROM ${TABLE_CIS_COMPO_bdpm} WHERE ${TABLE_CIS_COMPO_bdpm}.cis = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis))
@@ -94,7 +102,7 @@ class BdpmDatabase constructor(context: Context) {
         return list;
     }
 
-    fun getListAvis(cis: String): ArrayList<Avis> {
+    private fun getListAvis(cis: String): ArrayList<Avis> {
         val query = "SELECT motifEval, valeurASMR as titre, libelleASMR as libelle, dateAvisCT, codeHAS FROM ${TABLE_CIS_HAS_ASMR_bdpm} WHERE cis = ?" +
                 "UNION SELECT motifEval, valeurSMR as titre, libelleSMR as libelle, dateAvisCT, codeHAS FROM ${TABLE_CIS_HAS_SMR_bdpm} WHERE cis = ?;"
         val q = this.database.readableDatabase.rawQuery(query, arrayOf(cis, cis));
