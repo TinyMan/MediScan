@@ -91,7 +91,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     fun storeScan(presentation: Presentation) {
-        val scan = database?.storeScan(Scan(presentation.cip13, System.currentTimeMillis()))
+        val scan = database?.storeScan(Scan(presentation.cip13, System.currentTimeMillis(), presentation.dateExp, presentation.lot))
         if (scan != null && bdpm != null) {
             val item = ScanListItem(bdpm!!, scan)
             if (item.presentation != null)

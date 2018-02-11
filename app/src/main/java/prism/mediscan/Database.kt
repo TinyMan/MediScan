@@ -35,8 +35,11 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         val values = ContentValues()
         values.put(COLUMN_CIP, scan.cip)
         values.put(COLUMN_TIMESTAMP, scan.timestamp)
+        values.put(COLUMN_EXPIRATIONDATE, scan.expirationDate)
+        values.put(COLUMN_LOT, scan.numLot)
         val inserId = writableDatabase.insert(TABLE_HISTORY, null, values)
-        val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), COLUMN_ID + " = ?", arrayOf(inserId.toString()), null, null, null)
+        //val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), COLUMN_ID + " = ?", arrayOf(inserId.toString()), null, null, null)
+        var cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP, COLUMN_EXPIRATIONDATE, COLUMN_LOT), COLUMN_ID + " = ?", arrayOf(inserId.toString()), null, null, null)
         if (cursor.moveToFirst()) {
             result = cursorToScan(cursor)
         }
@@ -47,12 +50,15 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     fun cursorToScan(cursor: Cursor): Scan {
         Log.d("Database", cursor.getString(0))
         val scan = Scan(cursor.getString(cursor.getColumnIndex(COLUMN_CIP)),
-                cursor.getString(cursor.getColumnIndex(COLUMN_TIMESTAMP)).toLong(10))
+                cursor.getString(cursor.getColumnIndex(COLUMN_TIMESTAMP)).toLong(10),
+                cursor.getString(cursor.getColumnIndex(COLUMN_EXPIRATIONDATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMN_LOT)))
         return scan
     }
 
     fun getAllScans(): List<Scan> {
-        val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), null, null, null, null, null)
+        //val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP), null, null, null, null, null)
+        val cursor = readableDatabase.query(TABLE_HISTORY, arrayOf(COLUMN_CIP, COLUMN_TIMESTAMP, COLUMN_EXPIRATIONDATE, COLUMN_LOT), null, null, null, null, null)
         val list = ArrayList<Scan>(cursor.count)
         while (cursor.moveToNext()) {
             list.add(cursorToScan(cursor))
@@ -69,15 +75,20 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         val COLUMN_CIP = "comment"
         val COLUMN_TIMESTAMP = "timestamp"
 
+        val COLUMN_EXPIRATIONDATE = "expirationDate"
+        val COLUMN_LOT = "numLot"
+
         private val DATABASE_NAME = "mediscan.db"
-        private val DATABASE_VERSION = 2
+        private val DATABASE_VERSION = 4
 
         // Database creation sql statement
         private val DATABASE_CREATE = ("create table "
                 + TABLE_HISTORY + "( " + COLUMN_ID
                 + " integer primary key autoincrement, " + COLUMN_CIP
                 + " text not null, " + COLUMN_TIMESTAMP
-                + " integer not null);")
+                + " integer not null, " + COLUMN_EXPIRATIONDATE
+                + " text, " + COLUMN_LOT
+                + " text);")
     }
 
     fun removeAllScans() {
