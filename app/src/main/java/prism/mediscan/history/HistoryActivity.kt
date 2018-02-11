@@ -162,7 +162,7 @@ class HistoryActivity : AppCompatActivity() {
                         this.onScanSuccessful(presentation);
                 } catch (e: Exception) {
                     this.showError(e);
-                    Log.e("MainActivity", "Parse scan result error: " + result.contents);
+                    Log.e("MainActivity", "Parse scan result error: " + result.contents, e);
                 }
             }
         } else {
