@@ -42,4 +42,5 @@ dependencies {
     compile 'com.github.grennis:ExpandableRecyclerView:0.9.3'
     compile 'com.github.marlonlom:timeago:3.0.1'
     compile 'org.funktionale:funktionale-memoization:1.2'
+    compile 'com.koushikdutta.ion:ion:2.+'
 }
