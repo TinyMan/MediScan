@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
@@ -13,6 +15,7 @@ import prism.mediscan.*
 import prism.mediscan.details.PresentationDetails
 import prism.mediscan.model.Presentation
 import prism.mediscan.model.Scan
+
 
 class HistoryActivity : AppCompatActivity() {
     var database: Database? = null
@@ -36,6 +39,28 @@ class HistoryActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        when (item.getItemId()) {
+            R.id.remove_all -> {
+                Log.d("HistoryActivity", "Remove all scans")
+                removeAll()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun removeAll() {
+        (scan_history.adapter as HistoryAdapter).clear()
+        database?.removeAllScans()
+    }
 
     fun goToDetails(presentation: Presentation) {
         try {

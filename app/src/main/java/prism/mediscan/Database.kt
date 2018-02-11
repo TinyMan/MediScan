@@ -80,4 +80,8 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
                 + " integer not null);")
     }
 
+    fun removeAllScans() {
+        writableDatabase.delete(TABLE_HISTORY, null, null)
+    }
+
 }
