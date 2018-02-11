@@ -23,8 +23,11 @@
     <string name="btn_rcp">Voir le résumé des caractéristique du produit</string>
     <string name="ph_formepharma">formePharma</string>
     <string name="ph_totreAvis">bonjour</string>
+    <string name="ph_nomAvis">bonjour</string>
     <string name="ph_nomSubstance">bonjour</string>
     <string name="ph_details_avis">Details avis</string>
+    <string name="ph_description_interaction">Description</string>
+    <string name="ph_conseil_interaction">Conseil</string>
     <string name="title_activity_history">Médicaments scannés</string>
     <string name="ph_dateScan">dateScan</string>
     <string name="supprimer_tout">Supprimer tout</string>
