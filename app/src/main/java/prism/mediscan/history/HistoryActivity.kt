@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.content_history.*
+import kotlinx.coroutines.experimental.async
 import prism.mediscan.*
 import prism.mediscan.API.getInteractionsWithHistory
 import prism.mediscan.details.PresentationDetails
@@ -40,14 +41,17 @@ class HistoryActivity : AppCompatActivity() {
             goToDetails(item.presentation!!)
         }
         val history = getCisHistory()
-        values?.forEach { it ->
-            if (it.presentation != null)
-                it.presentation.specialite.interactions =
-                        ArrayList<Interaction>(
-                                getInteractionsWithHistory(this,
-                                        it.presentation.specialite.cis,
-                                        history)
-                        )
+        val that = this
+        async {
+            values?.forEach { it ->
+                if (it.presentation != null)
+                    it.presentation.specialite.interactions =
+                            ArrayList<Interaction>(
+                                    getInteractionsWithHistory(that,
+                                            it.presentation.specialite.cis,
+                                            history)
+                            )
+            }
         }
     }
 
