@@ -11,6 +11,7 @@ import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_presentation_details.*
 import kotlinx.android.synthetic.main.card_avis.*
 import kotlinx.android.synthetic.main.card_interactions.*
+
 import kotlinx.android.synthetic.main.card_resume.*
 import kotlinx.android.synthetic.main.card_substances.*
 import kotlinx.android.synthetic.main.content_presentation_details.*
@@ -25,6 +26,7 @@ class PresentationDetails : AppCompatActivity() {
     var presentation: Presentation? = null;
     var substance_adapter: SubstanceAdapter? = null;
     var avis_adapter: AvisExpandableAdapter? = null;
+    var interaction_adapter: InteractionExpandableAdapter? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,7 @@ class PresentationDetails : AppCompatActivity() {
         substance_adapter = SubstanceAdapter(this, R.layout.substance_layout)
         liste_substances.setAdapter(substance_adapter)
 
-        liste_interactions.emptyView = empty_interactions
+//       liste_interactions.emptyView = empty_interactions
         liste_substances.emptyView = empty_substances
 //        liste_avis.emptyView = empty_avis
 
@@ -95,9 +97,15 @@ class PresentationDetails : AppCompatActivity() {
         avis_recycler.layoutManager = LinearLayoutManager(this)
         avis_recycler.setAdapter(avis_adapter)
 
+        // interaction
+        interaction_adapter = InteractionExpandableAdapter(this, p.specialite)
+        interaction_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
+        interaction_recycler.layoutManager = LinearLayoutManager(this);
+        interaction_recycler.setAdapter(interaction_adapter);
+
         setListViewHeightBasedOnChildren(liste_substances);
 //        setListViewHeightBasedOnChildren(liste_avis);
-        setListViewHeightBasedOnChildren(liste_interactions);
+//        setListViewHeightBasedOnChildren(liste_interactions);
     }
 
 

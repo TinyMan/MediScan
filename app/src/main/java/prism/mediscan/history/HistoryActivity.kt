@@ -80,6 +80,7 @@ class HistoryActivity : AppCompatActivity() {
 
     fun goToDetails(presentation: Presentation) {
         try {
+            presentation.specialite.interactions = ArrayList<Interaction>(getInteractionsWithHistory(this, presentation.specialite.cis, getCisHistory()))
             val intent = Intent(this, PresentationDetails::class.java)
             intent.putExtra(PRESENTATION, presentation)
             startActivity(intent)
