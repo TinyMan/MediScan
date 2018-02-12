@@ -98,6 +98,11 @@ class PresentationDetails : AppCompatActivity() {
         avis_recycler.setAdapter(avis_adapter)
 
         // interaction
+        if (p.specialite.interactions.size == 0) {
+            empty_interactions.visibility = VISIBLE
+        } else {
+            empty_interactions.visibility = GONE
+        }
         interaction_adapter = InteractionExpandableAdapter(this, p.specialite)
         interaction_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
         interaction_recycler.layoutManager = LinearLayoutManager(this);
