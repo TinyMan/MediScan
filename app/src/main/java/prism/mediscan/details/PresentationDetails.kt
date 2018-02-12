@@ -74,6 +74,8 @@ class PresentationDetails : AppCompatActivity() {
         conditionPrescription.text = p.specialite.cpd;
         dateExpiration.text = if (p.dateExp != null) p.dateExp else ""
         lot.text = if (p.lot != null) p.lot else ""
+        labelExp.visibility = if (p.dateExp != null) VISIBLE else GONE
+        labelLot.visibility = if (p.lot != null) VISIBLE else GONE
 
         // substances
         substance_adapter?.clear()
