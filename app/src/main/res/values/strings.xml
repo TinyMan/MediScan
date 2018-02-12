@@ -3,7 +3,7 @@
     <string name="title_activity_presentation_details">Détails du médicament %1$s</string>
     <string name="substances">Substances</string>
     <string name="empty_substance">Aucune substance</string>
-    <string name="empty_interaction">Aucune interaction</string>
+    <string name="empty_interaction">Aucune interaction avec les autres médicaments scannés</string>
     <string name="interactions">Interactions</string>
     <string name="refDosage">pour %1$s</string>
     <string name="avis">Avis</string>
