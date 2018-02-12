@@ -11,11 +11,15 @@
         android:id="@+id/interactionDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ph_description_interaction" />
+        android:text="@string/ph_description_interaction"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/interactionConseil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ph_conseil_interaction" />
+        android:text="@string/ph_conseil_interaction"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
 </LinearLayout>

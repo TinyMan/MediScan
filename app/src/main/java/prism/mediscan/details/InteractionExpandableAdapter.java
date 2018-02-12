@@ -2,6 +2,7 @@ package prism.mediscan.details;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -57,7 +58,7 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
 
         public void bind(int position){
             this.description.setText(Html.fromHtml(visibleItems.get(position).description));
-            this.conseil.setText(Html.fromHtml(visibleItems.get(position).conseil));
+            this.conseil.setText(visibleItems.get(position).conseil);
         }
     }
 
@@ -117,10 +118,20 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
             if (this.specialite.getCis().equals(interaction.getCis1()))
                 nom = interaction.getNomMedicament2();
             else nom = interaction.getNomMedicament1();
+            String descr = interaction.getDescription();
+            descr = descr.substring(0, 1).toUpperCase() + descr.substring(1);
+            String conseil = interaction.getConseil();
+            conseil = conseil.substring(0, 1).toUpperCase() + conseil.substring(1);
+
+            conseil = conseil.replaceAll("\n", "\n\n");
+            conseil = conseil.replaceAll("\\- ", "\n\t- ");
+
+            Log.d("Interaction", conseil);
             list.add(new InteractionListItem(nom));
-            list.add(new InteractionListItem(nom, interaction.getDescription(), interaction.getConseil()));
+            list.add(new InteractionListItem(nom, descr, conseil));
         }
 
         return list;
     }
+
 }
