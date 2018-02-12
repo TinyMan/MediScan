@@ -121,11 +121,13 @@ public class InteractionExpandableAdapter extends ExpandableRecyclerAdapter<Inte
             String descr = interaction.getDescription();
             descr = descr.substring(0, 1).toUpperCase() + descr.substring(1);
             String conseil = interaction.getConseil();
-            conseil = conseil.substring(0, 1).toUpperCase() + conseil.substring(1);
 
-            conseil = conseil.replaceAll("\n", "\n\n");
-            conseil = conseil.replaceAll("\\- ", "\n\t- ");
+            if(conseil.length() != 0) {
+                conseil = conseil.substring(0, 1).toUpperCase() + conseil.substring(1);
 
+                conseil = conseil.replaceAll("\n", "\n\n");
+                conseil = conseil.replaceAll("\\- ", "\n\t- ");
+            }
             Log.d("Interaction", conseil);
             list.add(new InteractionListItem(nom));
             list.add(new InteractionListItem(nom, descr, conseil));
