@@ -37,20 +37,28 @@
                 <!--android:text="ok"/>-->
             </RelativeLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"
-                android:background="#D3D3D3" />
 
-            <TextView
-                android:id="@+id/empty_interactions"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="@string/empty_interaction"
-                android:visibility="gone" />
+                android:layout_height="wrap_content"
+                android:id="@+id/empty_interactions"
+                android:orientation="vertical"
+                android:layout_marginTop="0dp">
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#D3D3D3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="@string/empty_interaction" />
+
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/interaction_recycler"
