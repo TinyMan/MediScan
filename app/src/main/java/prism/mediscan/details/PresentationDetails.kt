@@ -116,11 +116,7 @@ class PresentationDetails : AppCompatActivity() {
         }
         avis_adapter = AvisExpandableAdapter(this, p.specialite)
         avis_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
-        avis_recycler.layoutManager = object : LinearLayoutManager(this) {
-            override fun canScrollVertically(): Boolean {
-                return false;
-            }
-        }
+        avis_recycler.layoutManager = LinearLayoutManager(this)
         avis_recycler.setAdapter(avis_adapter)
 
         // interaction
@@ -131,11 +127,7 @@ class PresentationDetails : AppCompatActivity() {
         }
         interaction_adapter = InteractionExpandableAdapter(this, p.specialite)
         interaction_adapter?.mode = ExpandableRecyclerAdapter.MODE_ACCORDION;
-        interaction_recycler.layoutManager = object : LinearLayoutManager(this) {
-            override fun canScrollVertically(): Boolean {
-                return false;
-            }
-        }
+        interaction_recycler.layoutManager = LinearLayoutManager(this);
         interaction_recycler.setAdapter(interaction_adapter);
 
         setListViewHeightBasedOnChildren(liste_substances);
