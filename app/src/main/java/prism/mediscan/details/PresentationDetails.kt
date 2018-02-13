@@ -1,7 +1,9 @@
 package prism.mediscan.details
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -11,7 +13,6 @@ import com.innodroid.expandablerecycler.ExpandableRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_presentation_details.*
 import kotlinx.android.synthetic.main.card_avis.*
 import kotlinx.android.synthetic.main.card_interactions.*
-
 import kotlinx.android.synthetic.main.card_resume.*
 import kotlinx.android.synthetic.main.card_substances.*
 import kotlinx.android.synthetic.main.content_presentation_details.*
@@ -19,6 +20,7 @@ import prism.mediscan.PRESENTATION
 import prism.mediscan.R
 import prism.mediscan.model.Presentation
 import prism.mediscan.setListViewHeightBasedOnChildren
+import java.util.*
 
 
 class PresentationDetails : AppCompatActivity() {
@@ -74,9 +76,27 @@ class PresentationDetails : AppCompatActivity() {
         conditionPrescription.text = p.specialite.cpd;
         dateExpiration.text = if (p.dateExp != null) p.dateExp else ""
         lot.text = if (p.lot != null) p.lot else ""
-        labelExp.visibility = if (p.dateExp != null) VISIBLE else GONE
         labelLot.visibility = if (p.lot != null) VISIBLE else GONE
+        if (p.dateExp != null) {
+            labelExp.visibility = VISIBLE
+            val regex = Regex("(\\d{2})/(\\d{4})")
 
+            if (regex.matches(p.dateExp)) {
+                val matched = regex.matchEntire(p.dateExp)
+                if (matched != null) {
+                    val month = matched.groups.get(1)!!.value.toInt(10) - 1
+                    val year = matched.groups.get(2)!!.value.toInt(10)
+                    if (Calendar.getInstance().get(Calendar.YEAR) >= year && Calendar.getInstance().get(Calendar.MONTH) > month) {
+                        val snack = Snackbar.make(coordinator, "Attention, ce médicament est périmé !", Snackbar.LENGTH_INDEFINITE)
+                        snack.setAction("J'ai compris", { snack.dismiss() })
+                                .setActionTextColor(Color.YELLOW)
+                        snack.show();
+                    }
+                }
+            }
+        } else {
+            labelExp.visibility = GONE
+        }
         // substances
         substance_adapter?.clear()
         substance_adapter?.addAll(p.specialite.substances)
